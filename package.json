@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "scripts": {    
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/src/server.js",
+    "devex": "npx nodemon ./src/server.ts",    
+    "test": "NODE_ENV=test jest --passWithNoTests --runInBand",
+    "test:coverage": "NODE_ENV=test jest --passWithNoTests --runInBand --coverage --collectCoverageFrom='./src/**'",    
+    "test:load-envs": "dotenv -e .env.test",
+    "dev:load-envs": "dotenv -e .env.development",
+    "dev": "NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts' -e ts"
   },
   "keywords": [],
   "author": "",
