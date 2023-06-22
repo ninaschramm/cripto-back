@@ -24,8 +24,14 @@ type ApplicationError = {
     message: string;
   };
 
+type UserData = {
+    email: string
+    password: string
+}
+
 export {
     NewUser,
     User,
-    ApplicationError
+    ApplicationError,
+    UserData,
 }
