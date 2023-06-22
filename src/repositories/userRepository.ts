@@ -18,7 +18,6 @@ async function updateUserInfo(userId: ObjectId, image?: string, description?: st
         { _id: userId },
         { $set: { image: newImage, description: newDescription } }
       );
-        console.log(updatedInfo)
       return updatedInfo
 }
 
