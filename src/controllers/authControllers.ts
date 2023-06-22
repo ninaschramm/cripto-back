@@ -1,6 +1,8 @@
+import { UserData } from "@/utils/types";
 import authService from "../services/authService";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
+import { errorHandlerMiddleware } from "../middlewares/errorHandlerMiddleware";
 
 export async function createUser(req: Request, res: Response) {
     const { email, password, image,
@@ -20,6 +22,22 @@ export async function createUser(req: Request, res: Response) {
       return res.status(httpStatus.BAD_REQUEST).send(error);
     }
   }
+
+export async function login(req:Request, res: Response, next: NextFunction) {
+  const { email, password } = req.body;
+  const userData: UserData = {
+    email,
+    password
+  }
+    try {
+      const token = await authService.login(userData);
+      return res.status(200).send(token)
+  }
+  catch(err) {
+      errorHandlerMiddleware(err, req, res, next);
+  }    
+  
+}
 
 // export async function getUsers(req: Request, res: Response) {  
 //   try {

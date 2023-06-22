@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import faker from "@faker-js/faker";
 import db from "../../src/db/mongo";
-import { User } from "../../src/types/types";
+import { User } from "../utils/types";
 
 export async function createUser(email?: string): Promise<User> {
   const incomingPassword = faker.internet.password(6);

@@ -1,6 +1,6 @@
 import app from "../../src/index";
 import { faker } from "@faker-js/faker";
-import { duplicatedEmailError } from "../../src/services/authService";
+import { duplicatedEmailError } from "../../src/utils/errors";
 import httpStatus from "http-status";
 import supertest from "supertest";
 import { createUser } from "../factories/userFactory";
