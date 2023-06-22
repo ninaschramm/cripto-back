@@ -11,7 +11,7 @@ type NewUser = {
 }
 
 type User = {
-    id: ObjectId
+    id: ObjectId | string
     name: string
     email: string
     password: string

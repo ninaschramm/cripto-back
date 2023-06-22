@@ -20,12 +20,6 @@ async function createUser({ email, password, image, name, description }: NewUser
   return result
 }
 
-// async function getUsers() {
-//   const users = await authRepository.getUsers();
-//   return users
-// }
-
-
 export async function login(login: UserData) {
   const user = await getUserOrFail(login);
   const expire = {expiresIn: 60*60*3};

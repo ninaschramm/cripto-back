@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { authRouter } from "./routes/authRouters";
+import { userRouter } from './routes/userRouters';
 
 dotenv.config()
 
@@ -14,6 +15,6 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
 });
-app.use(authRouter);
+app.use(authRouter, userRouter);
 
 export default app;

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { newUserSchema, userSchema } from "../schemas/authSchemas";
+import { newUserSchema } from "../schemas/authSchemas";
 import { validateBody } from "../middlewares/validation-middleware";
 import { createUser, login } from "../controllers/authControllers";
 
