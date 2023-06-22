@@ -1,5 +1,5 @@
-import { NewUser } from "@/types/types";
-import db from "@/db/mongo";
+import { NewUser } from "../types/types";
+import db from "../db/mongo";
 
 async function create(data: NewUser) {
     const result = await db.collection('users').insertOne(data);
@@ -9,13 +9,19 @@ async function create(data: NewUser) {
     }
 }
 
+async function getUsers() {
+    const result = await db.collection('users').find().toArray();
+    return result
+}
+
 async function findByEmail(email: string) {
     return db.collection('users').findOne({ email });
 }
 
 const authRepository = {
     create,
-    findByEmail
+    findByEmail,
+    getUsers
 }
 
 export default authRepository
