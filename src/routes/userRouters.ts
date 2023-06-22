@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getUserInfo } from "../controllers/userControllers";
+import { getUserInfo, updateUserInfo } from "../controllers/userControllers";
 import { authenticateToken } from "../middlewares/authenticationMiddleware";
 
 const userRouter = Router();
@@ -7,5 +7,6 @@ const userRouter = Router();
 userRouter
     .all("/*", authenticateToken)
     .get("/user", getUserInfo)
+    .put("/user", updateUserInfo)
 
 export { userRouter };

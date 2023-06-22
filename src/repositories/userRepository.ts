@@ -9,8 +9,22 @@ async function getUserInfo(userId: ObjectId) {
     return user
 }
 
+async function updateUserInfo(userId: ObjectId, image?: string, description?: string) {    
+    userId = new ObjectId(userId)
+    const user = await getUserInfo(userId);
+    const newImage = image || user.image;
+    const newDescription = description || user.description;
+    const updatedInfo = await db.collection('users').updateOne(
+        { _id: userId },
+        { $set: { image: newImage, description: newDescription } }
+      );
+        console.log(updatedInfo)
+      return updatedInfo
+}
+
 const userRepository = {
-    getUserInfo
+    getUserInfo,
+    updateUserInfo
 }
 
 export default userRepository
