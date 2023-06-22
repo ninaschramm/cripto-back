@@ -43,15 +43,15 @@ describe("POST /sign-up", () => {
       description: faker.lorem.lines()
     });
 
-    // it("should respond with status 409 when there is an user with given email", async () => {
-    // const body = generateValidBody();
-    // await createUser(body.email);
+    it("should respond with status 409 when there is an user with given email", async () => {
+    const body = generateValidBody();
+    await createUser(body.email);
 
-    // const response = await server.post("/sign-up").send(body);
+    const response = await server.post("/sign-up").send(body);
 
-    // expect(response.status).toBe(httpStatus.CONFLICT);
-    // expect(response.body).toEqual(duplicatedEmailError());
-    // });
+    expect(response.status).toBe(httpStatus.CONFLICT);
+    expect(response.body).toEqual(duplicatedEmailError());
+    });
 
     it("should respond with status 201 and create user when given email is unique", async () => {
     const body = generateValidBody();
