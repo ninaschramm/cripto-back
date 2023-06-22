@@ -92,3 +92,67 @@ describe("POST /sign-up", () => {
         });
     });
 });
+
+describe("POST /sign-in", () => {
+  it("should respond with status 401 when body is not given", async () => {
+    const response = await server.post("/sign-in");
+
+    expect(response.status).toBe(httpStatus.UNAUTHORIZED);
+  });
+
+  it("should respond with status 401 when body is not valid", async () => {
+    const invalidBody = { [faker.lorem.word()]: faker.lorem.word() };
+
+    const response = await server.post("/sign-in").send(invalidBody);
+
+    expect(response.status).toBe(httpStatus.UNAUTHORIZED);
+  });
+
+  describe("when body is valid", () => {
+    const generateValidBody = () => ({
+      email: faker.internet.userName(),
+      password: faker.internet.password(8),
+    });
+
+    it("should respond with status 401 if there is no user for given username", async () => {
+      const body = generateValidBody();
+
+      const response = await server.post("/sign-in").send(body);
+
+      expect(response.status).toBe(httpStatus.UNAUTHORIZED);
+    });
+
+    it("should respond with status 401 if there is a user for given username but password is not correct", async () => {
+      const body = generateValidBody();
+      await createUser(body.email, body.password);
+
+      const response = await server.post("/sign-in").send({
+        ...body,
+        password: faker.lorem.word(8),
+      });
+
+      expect(response.status).toBe(httpStatus.UNAUTHORIZED);
+    });
+
+    describe("when credentials are valid", () => {
+      it("should respond with status 200", async () => {
+        const body = generateValidBody();
+        await createUser(body.email, body.password);
+
+        const response = await server.post("/sign-in").send(body);
+
+        expect(response.status).toBe(httpStatus.OK);
+      });
+      
+      it("should respond with session token", async () => {
+        const body = generateValidBody();
+        await createUser(body.email, body.password);
+
+        const response = await server.post("/sign-in").send(body);
+
+        expect(response.text).toBeDefined();
+      });
+    });
+  });
+});
+

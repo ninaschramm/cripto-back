@@ -7,6 +7,6 @@ import { createUser, login } from "../controllers/authControllers";
 const authRouter = Router();
 
 authRouter.post("/sign-up", validateBody(newUserSchema), createUser)
-authRouter.post("/sign-in", validateBody(userSchema), login);
+authRouter.post("/sign-in", login);
 
 export { authRouter };

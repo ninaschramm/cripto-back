@@ -3,8 +3,8 @@ import faker from "@faker-js/faker";
 import db from "../../src/db/mongo";
 import { User } from "../utils/types";
 
-export async function createUser(email?: string): Promise<User> {
-  const incomingPassword = faker.internet.password(6);
+export async function createUser(email?: string, password? : string): Promise<User> {
+  const incomingPassword = password || faker.internet.password(6);
   const hashedPassword = await bcrypt.hash(incomingPassword, 10);
 
   const data = {
