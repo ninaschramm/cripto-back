@@ -9,10 +9,10 @@ async function create(data: NewUser) {
     }
 }
 
-async function getUsers() {
-    const result = await db.collection('users').find().toArray();
-    return result
-}
+// async function getUsers() {
+//     const result = await db.collection('users').find().toArray();
+//     return result
+// }
 
 async function findByEmail(email: string) {
     return db.collection('users').findOne({ email });
@@ -21,7 +21,6 @@ async function findByEmail(email: string) {
 const authRepository = {
     create,
     findByEmail,
-    getUsers
 }
 
 export default authRepository

@@ -21,13 +21,13 @@ export async function createUser(req: Request, res: Response) {
     }
   }
 
-export async function getUsers(req: Request, res: Response) {  
-  try {
-    const result = await authService.getUsers();
-    console.log(result)
-    return res.status(httpStatus.OK).send(result)
-  }
-  catch (error) {
-    return res.sendStatus(httpStatus.BAD_GATEWAY)
-  }
-}
+// export async function getUsers(req: Request, res: Response) {  
+//   try {
+//     const result = await authService.getUsers();
+//     console.log(result)
+//     return res.status(httpStatus.OK).send(result)
+//   }
+//   catch (error) {
+//     return res.sendStatus(httpStatus.BAD_GATEWAY)
+//   }
+// }
