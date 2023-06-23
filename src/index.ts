@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { authRouter } from "./routes/authRouters";
 import { userRouter } from './routes/userRouters';
+import criptoRouter from './routes/criptoRouters';
 
 dotenv.config()
 
@@ -15,6 +16,6 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
 });
-app.use(authRouter, userRouter);
+app.use(authRouter, userRouter, criptoRouter);
 
 export default app;

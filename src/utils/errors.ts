@@ -8,7 +8,6 @@ export function errorTypeToStatusCode(name: string) {
   if (name === "conflict") return 409;
   if (name === "not_found") return 404;
   if (name === "unauthorized") return 401;
-  if (name === "wrong_schema") return 422;
   return 400;
 }
 
