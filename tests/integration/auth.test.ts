@@ -4,7 +4,7 @@ import { duplicatedEmailError } from "../../src/utils/errors";
 import httpStatus from "http-status";
 import supertest from "supertest";
 import { createUser } from "../factories/userFactory";
-import db from "../../src/db/mongo";
+import {db, mongoClient} from "../../src/db/mongo";
 
 const server = supertest(app);
 
@@ -16,6 +16,10 @@ beforeAll(async () => {
   await cleanDb();
 });
 
+afterAll(async () => {
+  await mongoClient.close();
+  console.log("Disconnected from the database");
+});
 
 describe("POST /sign-up", () => {
   it("should respond with status 400 when body is not given", async () => {

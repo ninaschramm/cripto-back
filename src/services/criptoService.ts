@@ -20,12 +20,10 @@ export async function fetchData(start: number, limit: number) {
       // success
       const data = response.data;
       const limitedData = Object.values(data).slice(0, 5);
-      console.log(limitedData);
       return limitedData;
       
     } catch (error) {
       // error
-      console.error(error);
       throw error;
     }
   }

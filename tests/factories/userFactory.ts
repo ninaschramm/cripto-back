@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import faker from "@faker-js/faker";
-import db from "../../src/db/mongo";
+import { db } from "../../src/db/mongo";
 import { User } from "../utils/types";
 
 export async function createUser(email?: string, password? : string): Promise<User> {

@@ -4,7 +4,7 @@ import { User } from "../../src/utils/types";
 import httpStatus from "http-status";
 import supertest from "supertest";
 import { createUser } from "../factories/userFactory";
-import db from "../../src/db/mongo";
+import {db, mongoClient} from "../../src/db/mongo";
 import jwt from "jsonwebtoken";
 
 const server = supertest(app);
@@ -23,6 +23,11 @@ async function generateValidToken(user?: User) {
 
 beforeAll(async () => {
   await cleanDb();
+});
+
+afterAll(async () => {
+  await mongoClient.close();
+  console.log("Disconnected from the database");
 });
 
 describe("GET /user", () => {

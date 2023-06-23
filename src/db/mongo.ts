@@ -11,4 +11,4 @@ const promise = mongoClient.connect();
 promise.then(() => console.log("Connected to database"))
 db = mongoClient.db(process.env.MY_MONGO_DB);
 
-export default db;
+export { db, mongoClient };

@@ -1,5 +1,5 @@
 import { User } from "@/utils/types";
-import db from "../db/mongo";
+import { db } from "../db/mongo";
 import { ObjectId } from "mongodb";
 
 async function getUserInfo(userId: ObjectId) {

@@ -1,5 +1,5 @@
 import { NewUser } from "../utils/types";
-import db from "../db/mongo";
+import { db } from "../db/mongo";
 
 async function create(data: NewUser) {
     const result = await db.collection('users').insertOne(data);
