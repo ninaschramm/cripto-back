@@ -5,12 +5,11 @@ import httpStatus from "http-status";
 import { errorHandlerMiddleware } from "../middlewares/errorHandlerMiddleware";
 
 export async function createUser(req: Request, res: Response) {
-    const { email, password, image,
-    name, description } = req.body;
+    const { email, password, name, description } = req.body;
+    const image = 'https://cripto-tracker.s3.sa-east-1.amazonaws.com/profile-pics/anonymous-avatar-icon-25.png';
   
     try {
-      const user = await authService.createUser({ email, password, image,
-        name, description });
+      const user = await authService.createUser({ email, password, image, name, description });
       return res.status(httpStatus.CREATED).json({
         id: user.id,
         email: user.email,

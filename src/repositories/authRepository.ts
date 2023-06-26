@@ -9,11 +9,6 @@ async function create(data: NewUser) {
     }
 }
 
-// async function getUsers() {
-//     const result = await db.collection('users').find().toArray();
-//     return result
-// }
-
 async function findByEmail(email: string) {
    const result = await db.collection('users').findOne({ email });
    return result

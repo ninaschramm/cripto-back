@@ -19,7 +19,7 @@ function validate(schema: ObjectSchema, type: "body" | "params") {
     if (!error) {
       next();
     } else {
-      res.status(httpStatus.BAD_REQUEST).send("Something went wrong");
+      res.status(httpStatus.BAD_REQUEST).send("Es obligatorio completar todos los campos correctamente");
     }
   };
 }
