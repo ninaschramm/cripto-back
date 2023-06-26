@@ -1,4 +1,6 @@
 # cripto-back
+This application uses TypeScript, Node, Express and Jest.
+
 ## About
 
 This is a web browser application to keep track of criptocurrency.
