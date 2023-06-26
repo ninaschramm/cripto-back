@@ -7,8 +7,8 @@ async function getUserInfo(userId: ObjectId) {
     return result
 }
 
-async function updateUserInfo(userId: ObjectId, image?: string, description?: string) {
-    const result = await userRepository.updateUserInfo(userId, image, description)
+async function updateUserInfo(userId: ObjectId, image?: string, description?: string, email?: string, name?: string) {
+    const result = await userRepository.updateUserInfo(userId, image, description, email, name)
     return result
 }
 

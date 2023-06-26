@@ -17,14 +17,10 @@ export async function getUserInfo(req: AuthenticatedRequest, res: Response, next
 
 export async function updateUserInfo(req: AuthenticatedRequest, res: Response, next: NextFunction) {
     const { userId } = req;
-    const { image, description } = req.body;
-
-    if (!image && !description) {
-        return res.status(httpStatus.OK).send("No changes to save")
-    }
+    const { image, description, email, name } = req.body;
 
     try {
-        const updatedInfo = await userService.updateUserInfo(userId, image, description)
+        const updatedInfo = await userService.updateUserInfo(userId, image, description, email, name)
         return res.status(httpStatus.OK).send(updatedInfo)
     } catch (err) {
         errorHandlerMiddleware(err, req, res, next);

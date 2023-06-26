@@ -9,14 +9,16 @@ async function getUserInfo(userId: ObjectId) {
     return user
 }
 
-async function updateUserInfo(userId: ObjectId, image?: string, description?: string) {    
+async function updateUserInfo(userId: ObjectId, image?: string, description?: string, email?: string, name?: string) {    
     userId = new ObjectId(userId)
     const user = await getUserInfo(userId);
     const newImage = image || user.image;
     const newDescription = description || user.description;
+    const newEmail = email || user.email;
+    const newName = name || user.name;
     const updatedInfo = await db.collection('users').updateOne(
         { _id: userId },
-        { $set: { image: newImage, description: newDescription } }
+        { $set: { image: newImage, description: newDescription, name: newName, email: newEmail } }
       );
       return updatedInfo
 }
